@@ -16,7 +16,12 @@ pipeline {
             }
         }
         stage('launch tests') {
-            agent {docker {image "maven:4.0.0-rc-5-amazoncorretto-25-debian-trixie"}}
+            agent {
+                docker {
+                    image "maven:4.0.0-rc-5-amazoncorretto-25-debian-trixie"
+                    args '-e HOME=/tmp'
+                    }
+                }
             steps {
                 sh "mvn clean compile"
                 sh "mvn --version"
