@@ -20,11 +20,13 @@ pipeline {
             steps {
                 sh "mvn clean compile"
                 sh "mvn --version"
-                if (params.useTags) {
-                    sh "mvn test -Dkarate.options='--tags ${params.TAGS}'"
-                } else {
-                    sh "mvn test"
-                }     
+                script{
+                    if (params.useTags) {
+                        sh "mvn test -Dkarate.options='--tags ${params.TAGS}'"
+                    } else {
+                        sh "mvn test"
+                    } 
+                }    
                 stash name: 'allure-results', includes: 'allure-results/**'
             }
         }
