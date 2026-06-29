@@ -1,3 +1,4 @@
-allure-results
-.allure
-target
+allure-results/
+.allure/
+target/
+.vscode/
